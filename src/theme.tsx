@@ -24,7 +24,7 @@ const theme = createTheme({
           textTransform: 'none',
         },
         containedPrimary: {
-          ...tw`bg-primary`,
+          ...tw`bg-primary font-proxima`,
           color: tailwindTheme`colors.white` + '!important',
         },
         outlinedPrimary: {
@@ -33,7 +33,11 @@ const theme = createTheme({
         },
         sizeLarge: {
           height: '56px',
-          ...tw`px-8 text-base`,
+          ...tw`px-8 py-7 text-[17px]`,
+        },
+        sizeMedium: {
+          height: '40px',
+          ...tw`px-6 py-6 text-[16px]`,
         },
       },
     },

@@ -13,6 +13,8 @@ export interface BookVolume {
   volumeInfo: {
     title: string;
     authors?: string[];
+    publisher?: string;
+    description?: string;
     subtitle: string;
     publishedDate: string;
     industryIdentifiers: Array<{

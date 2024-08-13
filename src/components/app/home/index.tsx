@@ -58,46 +58,51 @@ export default function Home() {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  if ((isLoading && currentBooks.length === 0) || (isFetching && !isFetchingNextPage)) {
-    return (
-      <div className="flex items-center justify-center h-full w-full py-12 -mt-[3.15rem] lg:mt-0">
-        <CircularProgress />
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className="flex items-center justify-center w-full pb-9 lg:mt-0">
-        <h2>We encountered an error while fetching all assets</h2>
-        <Button onClick={() => refetch()} variant="contained" color="primary">
-          Retry
-        </Button>
-      </div>
-    );
-  }
-
   return (
-    <div id="home" className="w-full relative py-32 pb-10">
-      <div className="border-b border-b-white border-b-solid p-5 w-full flex justify-center items-center fixed top-0 left-0 backdrop-blur-[2.25rem]">
+    <div className="w-full relative pt-32 pb-5 lg:pb-10 p-5 lg:px-10">
+      <div className="border-b border-b-white/[.3] border-b-solid p-5 w-full flex justify-center items-center fixed top-0 left-0 backdrop-blur-[1rem] z-50">
         <OutlinedInput
-          className="hidden md:inline-flex w-[40rem] bg-transparent bg-white"
+          className="w-full max-w-[40rem] bg-[#262626] text-white"
           placeholder="Search Books"
           value={search}
           onChange={handleSearchChange}
-          startAdornment={<Search className="mx-2 text-gray-200" />}
+          startAdornment={<Search className="mx-2 text-white/[.3] p-[1px]" />}
           endAdornment={
             search && (
-              <IconButton onClick={() => setSearch('')} edge="end" size="small">
-                <Close className="text-sm" />
+              <IconButton
+                className="mr-0.5 hover:bg-white/[.05]"
+                onClick={() => setSearch('')}
+                edge="end"
+              >
+                <Close className="text-[18px] text-white/[.3]" />
               </IconButton>
             )
           }
+          inputProps={{
+            sx: {
+              '::placeholder': {
+                color: 'rgba(255, 255, 255, 0.8)',
+              },
+            },
+          }}
         />
       </div>
-      {currentBooks.length > 0 ? (
+      {(isLoading && currentBooks.length === 0) || (isFetching && !isFetchingNextPage) ? (
+        <div className="flex items-center justify-center h-[calc(100vh-85px)] -mt-[85px] w-full py-12">
+          <CircularProgress />
+        </div>
+      ) : isError ? (
+        <div className="h-screen flex items-center justify-center w-full">
+          <div className="flex flex-col items-center space-y-5 max-w-md">
+            <h2 className="text-3xl text-center">We encountered an error while fetching books</h2>
+            <Button className="w-fit" onClick={() => refetch()} variant="contained" color="primary">
+              Retry
+            </Button>
+          </div>
+        </div>
+      ) : currentBooks.length > 0 ? (
         <>
-          <div className="flex flex-wrap justify-center gap-5">
+          <div className="flex flex-wrap justify-center gap-7">
             {currentBooks.map((book: BookVolume) => (
               <BookCover key={book.id} book={book} />
             ))}
@@ -106,13 +111,17 @@ export default function Home() {
             <div ref={ref} />
             {isFetchingNextPage && (
               <div className="flex items-center justify-center w-full py-4">
-                <CircularProgress size={22} />
+                <Button disabled type="button" variant="contained" className="w-40 bg-primary/[.1]">
+                  <CircularProgress size={22} />
+                </Button>
               </div>
             )}
           </div>
         </>
       ) : (
-        <div>No Results</div>
+        <div className="h-[calc(100vh-85px)] -mt-[85px] flex items-center justify-center w-full">
+          <h2 className="text-3xl text-center">No Books Found.</h2>
+        </div>
       )}
     </div>
   );
