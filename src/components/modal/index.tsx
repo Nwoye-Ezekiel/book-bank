@@ -17,6 +17,14 @@ const Modal = ({ book, open, handleClose }: Props) => {
         className:
           'w-full mx-5 md:mx-10 max-h-[calc(100%-40px)] md:max-h-[calc(100%-80px)] max-w-2xl rounded-2xl w-fit h-fit p-6 md:p-8 hide-scrollbar bg-secondary text-white/[.65]',
       }}
+      slotProps={{
+        backdrop: {
+          sx: {
+            backdropFilter: 'blur(3px)',
+            bgcolor: 'rgba(0, 0, 0, 0.85)',
+          },
+        },
+      }}
     >
       <div className="flex justify-between items-center">
         <h2 className="text-xl md:text-[22px] text-white font-semibold">Book Details</h2>
