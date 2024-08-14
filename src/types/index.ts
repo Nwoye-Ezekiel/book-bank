@@ -1,8 +1,7 @@
 export interface QueryParams {
   q: string;
-  startIndex?: number;
+  startIndex: number;
   maxResults: number;
-  orderBy?: 'relevance' | 'newest';
 }
 
 export interface BookVolume {

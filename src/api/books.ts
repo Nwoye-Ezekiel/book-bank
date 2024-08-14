@@ -8,7 +8,7 @@ export async function getBooks(params: QueryParams) {
     params: {
       key: apiKey,
       filter: 'full',
-      Download: 'epub',
+      orderBy: 'newest',
       printType: 'books',
       ...params,
     },

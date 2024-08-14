@@ -25,7 +25,7 @@ const Card = ({ book }: { book: BookVolume }) => {
             <h2 className="overflow-hidden text-ellipsis whitespace-nowrap">
               {book.volumeInfo.title}
             </h2>
-            <p className="overflow-hidden font-normal text-ellipsis whitespace-nowrap text-sm text-white/[.5]">
+            <p className="overflow-hidden font-normal text-ellipsis whitespace-nowrap text-sm text-white/[.6]">
               {book.volumeInfo.authors?.length ?? 0 > 0
                 ? book.volumeInfo.authors?.map((author, index) => {
                     return (
@@ -35,23 +35,23 @@ const Card = ({ book }: { book: BookVolume }) => {
                       </span>
                     );
                   })
-                : 'Unknown'}
+                : 'N/A'}
             </p>
           </div>
           <div className="space-y-0.5">
             <div className="space-x-2 flex text-sm">
-              <div className="space-x-2 flex items-center text-white/[.6]">
+              <div className="space-x-2 flex items-center text-white/[.7]">
                 <AutoStories className="text-[15px]" />
-                <h3>Pages: </h3>
+                <h3 className="font-normal">Pages: </h3>
               </div>
-              <span className="text-white/[.5]">{book.volumeInfo.pageCount}</span>
+              <span className="text-white/[.6]">{book.volumeInfo.pageCount}</span>
             </div>
             <div className="space-x-2 flex text-sm">
-              <div className="space-x-2 flex items-center text-white/[.6]">
+              <div className="space-x-2 flex items-center text-white/[.7]">
                 <CalendarMonth className="text-[15px]" />
-                <h3>Published: </h3>
+                <h3 className="font-normal">Published: </h3>
               </div>
-              <span className="text-white/[.5]">{book.volumeInfo.publishedDate}</span>
+              <span className="text-white/[.6]">{book.volumeInfo.publishedDate ?? 'N/A'}</span>
             </div>
           </div>
         </div>

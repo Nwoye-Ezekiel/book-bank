@@ -26,7 +26,6 @@ export default function Home() {
   } = useInfiniteBooks({
     maxResults,
     startIndex,
-    orderBy: 'relevance',
     q: debouncedSearch || 'comics',
   });
 
@@ -72,7 +71,7 @@ export default function Home() {
           placeholder="Search Books"
           value={search}
           onChange={handleSearchChange}
-          startAdornment={<Search className="mx-2 text-white/[.3] p-[1px]" />}
+          startAdornment={<Search className="mx-2 text-white/[.4] p-[1px]" />}
           endAdornment={
             search && (
               <IconButton
@@ -83,14 +82,14 @@ export default function Home() {
                 }}
                 edge="end"
               >
-                <Close className="text-[18px] text-white/[.3]" />
+                <Close className="text-[18px] text-white/[.4]" />
               </IconButton>
             )
           }
           inputProps={{
             sx: {
               '::placeholder': {
-                color: 'rgba(255, 255, 255, 0.8)',
+                color: 'rgba(255, 255, 255, 0.9)',
               },
             },
           }}

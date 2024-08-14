@@ -14,20 +14,22 @@ const Modal = ({ book, open, handleClose }: Props) => {
       open={open}
       onClose={handleClose}
       PaperProps={{
-        className: 'w-full max-w-2xl rounded-2xl w-fit h-fit p-6 md:p-8 hide-scrollbar',
+        className:
+          'w-full max-w-2xl rounded-2xl w-fit h-fit p-6 md:p-8 hide-scrollbar bg-[#262626] text-white/[.65]',
       }}
     >
       <div className="flex justify-between items-center">
         <h2 className="text-[22px] text-primary font-semibold">Book Details</h2>
         <IconButton
+          color="primary"
           className="bg-primary w-7 h-7 justify-self-end"
           size="small"
           onClick={handleClose}
         >
-          <Close className="p-1.5 text-white" />
+          <Close className="p-1 text-white" />
         </IconButton>
       </div>
-      <div className="flex w-full space-x-5 mt-5">
+      <div className="flex flex-col lg:flex-row w-full gap-5 mt-5">
         <img
           src={
             book.volumeInfo.imageLinks?.thumbnail ??
@@ -35,50 +37,52 @@ const Modal = ({ book, open, handleClose }: Props) => {
             ''
           }
           alt="thumbnail"
-          className={`w-[calc(100%-120px)] h-80 bg-white text-black rounded-lg shadow-lg shadow-black/[.04]`}
+          className={`w-full h-80 bg-black/[.12] text-black rounded-lg shadow-lg shadow-black/[.04]`}
         />
-        <div className="flex flex-col justify-center items-center gap-5 w-[120px] bg-primary/[.05] rounded-lg shadow-lg shadow-black/[.04]">
-          <div className="gap-2 flex flex-col items-center text-gray-700">
+        <div className="flex flex-shrink-0 flex-row lg:flex-col justify-between lg:justify-center items-center gap-5 lg:gap-7 bg-black/[.12] rounded-lg py-2 px-3 lg:p-3">
+          <div className="gap-2 flex flex-col items-start lg:items-center text-gray-700">
             <CalendarMonth className="text-primary text-[17px] mt-1" />
-            <div className="flex flex-col items-center">
-              <h3 className="text-black">{book.volumeInfo.publishedDate}</h3>
-              <p className="text-sm">Published</p>
+            <div className="flex flex-col items-start lg:items-center">
+              <h3 className="text-white">{book.volumeInfo.publishedDate ?? 'N/A'}</h3>
+              <p className="text-sm text-white/[.55]">Published</p>
             </div>
           </div>
-          <div className="gap-2 flex flex-col items-center text-gray-700">
+          <div className="gap-2 flex flex-col items-start lg:items-center text-gray-700">
             <AutoStories className="text-primary text-[17px] mt-1" />
-            <div className="flex flex-col items-center">
-              <h3 className="text-black">{book.volumeInfo.pageCount}</h3>
-              <p className="text-sm">Pages</p>
+            <div className="flex flex-col items-start lg:items-center">
+              <h3 className="text-white">{book.volumeInfo.pageCount}</h3>
+              <p className="text-sm text-white/[.55]">Pages</p>
             </div>
           </div>
-          <div className="gap-2 flex flex-col items-center text-gray-700">
+          <div className="gap-2 flex flex-col items-start lg:items-center text-gray-700">
             <Flag className="text-primary text-[17px] mt-1" />
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-start lg:items-center">
               <img src={`https://flagsapi.com/${book.accessInfo.country}/shiny/24.png`} />
-              <p className="text-sm">{book.accessInfo.country}</p>
+              <p className="text-sm text-white/[.55]">{book.accessInfo.country}</p>
             </div>
           </div>
         </div>
       </div>
       <div className="mt-5">
-        <h2 className="text-2xl font-semibold mb-0.5">{book.volumeInfo.title}</h2>
-        <p className="space-x-2">
+        <h2 className="text-2xl font-semibold mb-0.5 text-white">{book.volumeInfo.title}</h2>
+        <p className="flex space-x-2">
           <span className="font-clash font-medium text-primary">Authors:</span>
-          {book.volumeInfo.authors?.length ?? 0 > 0
-            ? book.volumeInfo.authors?.map((author, index) => {
-                return (
-                  <span key={index}>
-                    {index > 0 && ', '}
-                    {author}
-                  </span>
-                );
-              })
-            : 'Unknown'}
+          <div>
+            {book.volumeInfo.authors?.length ?? 0 > 0
+              ? book.volumeInfo.authors?.map((author, index) => {
+                  return (
+                    <span key={index}>
+                      {index > 0 && ', '}
+                      {author}
+                    </span>
+                  );
+                })
+              : 'N/A'}
+          </div>
         </p>
         <p className="space-x-2">
           <span className="font-clash font-medium text-primary">Publisher:</span>
-          <span>{book.volumeInfo.publisher ?? 'Unknown'}</span>
+          <span>{book.volumeInfo.publisher ?? 'N/A'}</span>
         </p>
       </div>
       <div className="flex flex-wrap items-center gap-2 mt-2.5">
@@ -93,13 +97,15 @@ const Modal = ({ book, open, handleClose }: Props) => {
         ))}
       </div>
       <div className="mt-5 space-y-1">
-        <h2 className="text-xl font-medium">Description</h2>
+        <h2 className="text-xl font-medium text-white">Description</h2>
         <p className="text-[17px]">{book.volumeInfo.description ?? 'No Description.'}</p>
       </div>
       <Button
         size="large"
         className="mt-6"
-        onClick={() => window.open(book.accessInfo.epub.downloadLink)}
+        onClick={() =>
+          window.open(book.volumeInfo.previewLink ?? book.accessInfo.epub.downloadLink)
+        }
       >
         View Book
       </Button>
