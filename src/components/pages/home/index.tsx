@@ -64,10 +64,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full relative pt-[7.3rem] md:pt-32 pb-5 md:pb-10 p-5 md:px-10">
-      <div className="border-b border-b-white/[.3] border-b-solid p-5 w-full flex justify-center items-center fixed top-0 left-0 backdrop-blur-[1rem] z-50">
+    <div className="w-full relative p-5 pt-[7.3rem] md:p-10 md:pt-32">
+      <div className="fixed top-0 left-0 h-screen w-full z-[-1] bg-black/[.4]" />
+      <div className="border-b border-b-white/[.25] border-b-solid p-5 w-full flex justify-center items-center fixed top-0 left-0 bg-header z-50">
         <OutlinedInput
-          className="w-full max-w-[40rem] bg-[#262626] text-white"
+          className="w-full max-w-[40rem] bg-secondary text-white"
           placeholder="Search Books"
           value={search}
           onChange={handleSearchChange}
@@ -101,10 +102,13 @@ export default function Home() {
         </div>
       ) : isError ? (
         <div className="h-[calc(100vh-85px)] -mt-[85px] flex items-center justify-center w-full">
-          <div className="flex flex-col items-center space-y-6 max-w-md">
-            <h2 className="text-3xl text-center text-white">
-              We encountered an error while fetching books
-            </h2>
+          <div className="flex flex-col items-center space-y-6 md:space-y-8">
+            <div className="space-y-1 md:space-y-2">
+              <h2 className="text-2xl md:text-3xl text-center text-white">An Error Occurred!</h2>
+              <p className="text-xl md:text-[22px] text-center text-white/[.8]">
+                We encountered an error while fetching books.
+              </p>
+            </div>
             <Button
               className="w-fit text-lg"
               onClick={() => refetch()}
@@ -122,10 +126,10 @@ export default function Home() {
               <Card key={book.id} book={book} />
             ))}
           </div>
-          <div className="my-4 flex">
+          <div className="mt-5 md:mt-10 flex">
             <div ref={ref} />
             {isFetchingNextPage && (
-              <div className="flex items-center justify-center w-full py-4">
+              <div className="flex items-center justify-center w-full">
                 <Button disabled type="button" variant="contained" className="w-40 bg-primary/[.1]">
                   <CircularProgress size={22} />
                 </Button>
@@ -149,7 +153,7 @@ export default function Home() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          <KeyboardDoubleArrowDown className="text-black text-2xl rotate-180" />
+          <KeyboardDoubleArrowDown className="text-white text-2xl rotate-180" />
         </div>
       </div>
     </div>

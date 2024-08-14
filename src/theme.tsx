@@ -15,9 +15,9 @@ const theme = createTheme({
   components: {
     MuiButton: {
       defaultProps: {
-        disableElevation: true,
         size: 'large',
         variant: 'contained',
+        disableElevation: true,
       },
       styleOverrides: {
         root: {
@@ -26,10 +26,6 @@ const theme = createTheme({
         containedPrimary: {
           ...tw`bg-primary font-proxima`,
           color: tailwindTheme`colors.white` + '!important',
-        },
-        outlinedPrimary: {
-          borderColor: tailwindTheme`colors.primary` + '!important',
-          color: tailwindTheme`colors.primary` + '!important',
         },
         sizeLarge: {
           height: '56px',

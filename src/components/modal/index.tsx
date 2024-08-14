@@ -1,6 +1,6 @@
 import { BookVolume } from 'types';
 import { Button, Chip, Dialog, IconButton } from '@mui/material';
-import { AutoStories, CalendarMonth, Close, Flag } from '@mui/icons-material';
+import { AutoStories, CalendarMonth, Close, Language } from '@mui/icons-material';
 
 interface Props {
   open: boolean;
@@ -15,21 +15,20 @@ const Modal = ({ book, open, handleClose }: Props) => {
       onClose={handleClose}
       PaperProps={{
         className:
-          'w-full max-w-2xl rounded-2xl w-fit h-fit p-6 md:p-8 hide-scrollbar bg-[#262626] text-white/[.65]',
+          'w-full mx-5 md:mx-10 max-h-[calc(100%-40px)] md:max-h-[calc(100%-80px)] max-w-2xl rounded-2xl w-fit h-fit p-6 md:p-8 hide-scrollbar bg-secondary text-white/[.65]',
       }}
     >
       <div className="flex justify-between items-center">
-        <h2 className="text-[22px] text-primary font-semibold">Book Details</h2>
+        <h2 className="text-xl md:text-[22px] text-white font-semibold">Book Details</h2>
         <IconButton
-          color="primary"
-          className="bg-primary w-7 h-7 justify-self-end"
+          className="bg-black/[.12] w-8 h-8 justify-self-end"
           size="small"
           onClick={handleClose}
         >
           <Close className="p-1 text-white" />
         </IconButton>
       </div>
-      <div className="flex flex-col lg:flex-row w-full gap-5 mt-5">
+      <div className="flex flex-col md:flex-row w-full gap-5 mt-4 md:mt-5">
         <img
           src={
             book.volumeInfo.imageLinks?.thumbnail ??
@@ -37,36 +36,38 @@ const Modal = ({ book, open, handleClose }: Props) => {
             ''
           }
           alt="thumbnail"
-          className={`w-full h-80 bg-black/[.12] text-black rounded-lg shadow-lg shadow-black/[.04]`}
+          className={`w-full md:w-[calc(100%-140px)] h-80 bg-black/[.12] text-black rounded-lg shadow-lg shadow-black/[.04]`}
         />
-        <div className="flex flex-shrink-0 flex-row lg:flex-col justify-between lg:justify-center items-center gap-5 lg:gap-7 bg-black/[.12] rounded-lg py-2 px-3 lg:p-3">
-          <div className="gap-2 flex flex-col items-start lg:items-center text-gray-700">
+        <div className="flex flex-shrink-0 flex-row md:flex-col justify-between items-center gap-5 md:w-[120px]">
+          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-black/[.12] rounded-lg py-2 md:py-2.5 px-3">
             <CalendarMonth className="text-primary text-[17px] mt-1" />
-            <div className="flex flex-col items-start lg:items-center">
-              <h3 className="text-white">{book.volumeInfo.publishedDate ?? 'N/A'}</h3>
+            <div className="flex flex-col items-center">
+              <h3 className="text-white">{book.volumeInfo.publishedDate?.slice(0, 4) ?? 'N/A'}</h3>
               <p className="text-sm text-white/[.55]">Published</p>
             </div>
           </div>
-          <div className="gap-2 flex flex-col items-start lg:items-center text-gray-700">
+          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-black/[.12] rounded-lg py-2 md:py-2.5 px-3">
             <AutoStories className="text-primary text-[17px] mt-1" />
-            <div className="flex flex-col items-start lg:items-center">
+            <div className="flex flex-col items-center">
               <h3 className="text-white">{book.volumeInfo.pageCount}</h3>
               <p className="text-sm text-white/[.55]">Pages</p>
             </div>
           </div>
-          <div className="gap-2 flex flex-col items-start lg:items-center text-gray-700">
-            <Flag className="text-primary text-[17px] mt-1" />
-            <div className="flex flex-col items-start lg:items-center">
-              <img src={`https://flagsapi.com/${book.accessInfo.country}/shiny/24.png`} />
-              <p className="text-sm text-white/[.55]">{book.accessInfo.country}</p>
+          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-black/[.12] rounded-lg py-2 md:py-2.5 px-3">
+            <Language className="text-primary text-[17px] mt-1" />
+            <div className="flex flex-col items-center">
+              <h3 className="text-white uppercase">{book.volumeInfo.language}</h3>
+              <p className="text-sm text-white/[.55]">Language</p>
             </div>
           </div>
         </div>
       </div>
-      <div className="mt-5">
-        <h2 className="text-2xl font-semibold mb-0.5 text-white">{book.volumeInfo.title}</h2>
+      <div className="mt-4 md:mt-5">
+        <h2 className="text-[22px] md:text-2xl font-semibold mb-0.5 text-primary">
+          {book.volumeInfo.title}
+        </h2>
         <p className="flex space-x-2">
-          <span className="font-clash font-medium text-primary">Authors:</span>
+          <span className="font-clash font-medium text-white">Authors:</span>
           <div>
             {book.volumeInfo.authors?.length ?? 0 > 0
               ? book.volumeInfo.authors?.map((author, index) => {
@@ -81,11 +82,11 @@ const Modal = ({ book, open, handleClose }: Props) => {
           </div>
         </p>
         <p className="space-x-2">
-          <span className="font-clash font-medium text-primary">Publisher:</span>
+          <span className="font-clash font-medium text-white">Publisher:</span>
           <span>{book.volumeInfo.publisher ?? 'N/A'}</span>
         </p>
       </div>
-      <div className="flex flex-wrap items-center gap-2 mt-2.5">
+      <div className="flex flex-wrap items-center gap-2 mt-3">
         {book.volumeInfo.categories?.map((category, index) => (
           <Chip
             key={index}
@@ -97,12 +98,12 @@ const Modal = ({ book, open, handleClose }: Props) => {
         ))}
       </div>
       <div className="mt-5 space-y-1">
-        <h2 className="text-xl font-medium text-white">Description</h2>
+        <h2 className="text-xl md:text-[22px] font-semibold text-white">Description</h2>
         <p className="text-[17px]">{book.volumeInfo.description ?? 'No Description.'}</p>
       </div>
       <Button
         size="large"
-        className="mt-6"
+        className="mt-5 md:mt-6"
         onClick={() =>
           window.open(book.volumeInfo.previewLink ?? book.accessInfo.epub.downloadLink)
         }

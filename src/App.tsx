@@ -12,7 +12,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Suspense
         fallback={
-          <div className="flex flex-col items-center justify-center h-screen bg-[#262626]">
+          <div className="flex flex-col items-center justify-center h-screen bg-secondary">
             <CircularProgress />
           </div>
         }

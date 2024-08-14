@@ -13,7 +13,7 @@ const Card = ({ book }: { book: BookVolume }) => {
     <div
       onMouseOver={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      className="w-full max-w-md md:max-w-60 flex flex-wrap flex-col shadow-lg rounded-xl overflow-hidden bg-[#262626] text-white"
+      className="w-full max-w-md md:max-w-60 flex flex-wrap flex-col shadow-lg rounded-xl overflow-hidden bg-secondary text-white"
     >
       <div className="relative h-[22.5rem]">
         <div
@@ -22,10 +22,10 @@ const Card = ({ book }: { book: BookVolume }) => {
           }`}
         >
           <div>
-            <h2 className="overflow-hidden text-ellipsis whitespace-nowrap">
+            <h2 className="text-[17px] overflow-hidden text-ellipsis whitespace-nowrap">
               {book.volumeInfo.title}
             </h2>
-            <p className="overflow-hidden font-normal text-ellipsis whitespace-nowrap text-sm text-white/[.6]">
+            <p className="overflow-hidden font-normal text-ellipsis whitespace-nowrap text-[15px] text-white/[.6]">
               {book.volumeInfo.authors?.length ?? 0 > 0
                 ? book.volumeInfo.authors?.map((author, index) => {
                     return (
@@ -39,19 +39,21 @@ const Card = ({ book }: { book: BookVolume }) => {
             </p>
           </div>
           <div className="space-y-0.5">
-            <div className="space-x-2 flex text-sm">
-              <div className="space-x-2 flex items-center text-white/[.7]">
+            <div className="space-x-2 flex items-center text-sm">
+              <div className="space-x-2 flex items-center text-white/[.8]">
                 <AutoStories className="text-[15px]" />
                 <h3 className="font-normal">Pages: </h3>
               </div>
               <span className="text-white/[.6]">{book.volumeInfo.pageCount}</span>
             </div>
-            <div className="space-x-2 flex text-sm">
-              <div className="space-x-2 flex items-center text-white/[.7]">
+            <div className="space-x-2 flex items-center text-sm">
+              <div className="space-x-2 flex items-center text-white/[.8]">
                 <CalendarMonth className="text-[15px]" />
                 <h3 className="font-normal">Published: </h3>
               </div>
-              <span className="text-white/[.6]">{book.volumeInfo.publishedDate ?? 'N/A'}</span>
+              <span className="text-white/[.6]">
+                {book.volumeInfo.publishedDate?.slice(0, 4) ?? 'N/A'}
+              </span>
             </div>
           </div>
         </div>
@@ -62,12 +64,12 @@ const Card = ({ book }: { book: BookVolume }) => {
             ''
           }
           alt="thumbnail"
-          className={`w-full bg-[#262626] text-black rounded-b-lg shadow-lg shadow-black/[.04] ${
+          className={`w-full bg-secondary text-black rounded-b-lg shadow-lg shadow-black/[.04] ${
             hovering ? 'duration-300 h-full' : 'duration-500 h-[15rem]'
           }`}
         />
         <div
-          className={`absolute top-0 left-0 h-full w-full bg-black/[.7] z-20 flex flex-col justify-center items-center transform space-y-5 cursor-default ${
+          className={`absolute top-0 left-0 h-full w-full bg-black/[.75] z-20 flex flex-col justify-center items-center transform space-y-5 cursor-default ${
             hovering ? 'duration-200 opacity-100' : 'duration-500 opacity-0'
           }`}
         >
