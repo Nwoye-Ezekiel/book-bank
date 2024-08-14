@@ -53,6 +53,6 @@ If your browser doesn't open the app automatically after it has loaded, you can 
 You can as well view the app which is hosted on **Vercel** by clicking on this link 👉
 [Book Bank]
 
-[book bank]: https://book-bank.vercel.app/
+[book bank]: https://the-book-bank.vercel.app/
 [google's books api]: https://developers.google.com/books
 [google books]: https://books.google.com
