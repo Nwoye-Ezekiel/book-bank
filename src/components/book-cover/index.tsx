@@ -64,8 +64,8 @@ const Modal = ({ book, open, handleClose }: ModalProps) => {
       </div>
       <div className="mt-5">
         <h2 className="text-2xl font-semibold mb-0.5">{book.volumeInfo.title}</h2>
-        <p>
-          <span className="font-clash font-medium text-primary">Authors: </span>
+        <p className="space-x-2">
+          <span className="font-clash font-medium text-primary">Authors:</span>
           {book.volumeInfo.authors?.length ?? 0 > 0
             ? book.volumeInfo.authors?.map((author, index) => {
                 return (
@@ -77,9 +77,9 @@ const Modal = ({ book, open, handleClose }: ModalProps) => {
               })
             : 'Unknown'}
         </p>
-        <p>
-          <span className="font-clash font-medium text-primary">Publisher: </span>
-          {book.volumeInfo.publisher ?? 'Unknown'}
+        <p className="space-x-2">
+          <span className="font-clash font-medium text-primary">Publisher:</span>
+          <span>{book.volumeInfo.publisher ?? 'Unknown'}</span>
         </p>
       </div>
       <div className="flex flex-wrap items-center gap-2 mt-2.5">

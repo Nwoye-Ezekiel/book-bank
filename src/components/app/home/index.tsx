@@ -2,7 +2,7 @@ import { BookVolume } from 'types';
 import debounce from 'lodash.debounce';
 import { useInfiniteBooks } from 'data';
 import BookCover from 'components/book-cover';
-import { Close, Search } from '@mui/icons-material';
+import { Close, KeyboardDoubleArrowDown, Search } from '@mui/icons-material';
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Button, CircularProgress, IconButton, OutlinedInput } from '@mui/material';
@@ -11,6 +11,7 @@ export default function Home() {
   const maxResults = 10;
   const [search, setSearch] = useState('');
   const [startIndex, setStartIndex] = useState(0);
+  const [showButton, setShowButton] = useState(false);
   const [debouncedSearch, setDebouncedSearch] = useState('');
 
   const {
@@ -26,7 +27,7 @@ export default function Home() {
     maxResults,
     startIndex,
     orderBy: 'relevance',
-    q: debouncedSearch || 'react',
+    q: debouncedSearch || 'comics',
   });
 
   const currentBooks: BookVolume[] = useMemo(() => {
@@ -58,6 +59,11 @@ export default function Home() {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
+  useEffect(() => {
+    window.addEventListener('scroll', () => setShowButton(window.scrollY >= 1));
+    return () => window.removeEventListener('scroll', () => setShowButton(window.scrollY >= 1));
+  }, []);
+
   return (
     <div className="w-full relative pt-32 pb-5 lg:pb-10 p-5 lg:px-10">
       <div className="border-b border-b-white/[.3] border-b-solid p-5 w-full flex justify-center items-center fixed top-0 left-0 backdrop-blur-[1rem] z-50">
@@ -71,7 +77,10 @@ export default function Home() {
             search && (
               <IconButton
                 className="mr-0.5 hover:bg-white/[.05]"
-                onClick={() => setSearch('')}
+                onClick={() => {
+                  setSearch('');
+                  debouncedSearchHandler('');
+                }}
                 edge="end"
               >
                 <Close className="text-[18px] text-white/[.3]" />
@@ -92,10 +101,17 @@ export default function Home() {
           <CircularProgress />
         </div>
       ) : isError ? (
-        <div className="h-screen flex items-center justify-center w-full">
-          <div className="flex flex-col items-center space-y-5 max-w-md">
-            <h2 className="text-3xl text-center">We encountered an error while fetching books</h2>
-            <Button className="w-fit" onClick={() => refetch()} variant="contained" color="primary">
+        <div className="h-[calc(100vh-85px)] -mt-[85px]  flex items-center justify-center w-full">
+          <div className="flex flex-col items-center space-y-6 max-w-md">
+            <h2 className="text-3xl text-center text-white">
+              We encountered an error while fetching books
+            </h2>
+            <Button
+              className="w-fit text-lg"
+              onClick={() => refetch()}
+              variant="contained"
+              color="primary"
+            >
               Retry
             </Button>
           </div>
@@ -120,9 +136,23 @@ export default function Home() {
         </>
       ) : (
         <div className="h-[calc(100vh-85px)] -mt-[85px] flex items-center justify-center w-full">
-          <h2 className="text-3xl text-center">No Books Found.</h2>
+          <h2 className="text-3xl text-center text-white">No Books Found.</h2>
         </div>
       )}
+      <div
+        className={`fixed bottom-0 right-0 p-4 lg:p-5 z-30 transition-opacity duration-500 ${
+          showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div
+          className="bg-primary p-2 rounded-full shadow-md hover:shadow-lg duration-150 cursor-pointer"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
+          <KeyboardDoubleArrowDown className="text-black text-2xl rotate-180" />
+        </div>
+      </div>
     </div>
   );
 }
