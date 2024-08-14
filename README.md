@@ -1,4 +1,4 @@
-## Book Bank
+# Book Bank
 
 Book Bank is a React-based web application that allows users to search and explore books using [Google's Books API]. 
 
