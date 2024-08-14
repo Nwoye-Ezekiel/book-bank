@@ -1,6 +1,8 @@
+![Logo](/src/assets/images/readme/logo.png)
+
 # Book Bank
 
-Book Bank is a React-based web application that allows users to search and explore books using [Google's Books API]. 
+Book Bank is a React-based web application that allows users to search and explore books using [Google's Books API].
 
 The application features infinite scrolling, providing a seamless browsing experience. Users can view detailed book information and access previews directly on the [Google Books] platform.
 
@@ -21,6 +23,7 @@ This project is built using the following tools and technologies:
 - **Lint Staged:** Runs linting and formatting tasks on staged files before committing.
 - **ESLint:** Identifies and fixes problems in JavaScript and TypeScript code.
 - **Prettier:** Formats code consistently according to a defined style.
+- **Figma:** A collaborative design tool used to create user interfaces. I used it to design the logo, the app's favicon, and to experiment with various UI elements and layouts.
 
 ## Key Features
 
