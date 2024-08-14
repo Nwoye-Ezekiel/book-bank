@@ -1,7 +1,7 @@
 import { BookVolume } from 'types';
 import debounce from 'lodash.debounce';
 import { useInfiniteBooks } from 'data';
-import BookCover from 'components/book-cover';
+import Card from 'components/card';
 import { Close, KeyboardDoubleArrowDown, Search } from '@mui/icons-material';
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -65,7 +65,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full relative pt-32 pb-5 lg:pb-10 p-5 lg:px-10">
+    <div className="w-full relative pt-[7.3rem] md:pt-32 pb-5 md:pb-10 p-5 md:px-10">
       <div className="border-b border-b-white/[.3] border-b-solid p-5 w-full flex justify-center items-center fixed top-0 left-0 backdrop-blur-[1rem] z-50">
         <OutlinedInput
           className="w-full max-w-[40rem] bg-[#262626] text-white"
@@ -101,7 +101,7 @@ export default function Home() {
           <CircularProgress />
         </div>
       ) : isError ? (
-        <div className="h-[calc(100vh-85px)] -mt-[85px]  flex items-center justify-center w-full">
+        <div className="h-[calc(100vh-85px)] -mt-[85px] flex items-center justify-center w-full">
           <div className="flex flex-col items-center space-y-6 max-w-md">
             <h2 className="text-3xl text-center text-white">
               We encountered an error while fetching books
@@ -118,9 +118,9 @@ export default function Home() {
         </div>
       ) : currentBooks.length > 0 ? (
         <>
-          <div className="flex flex-wrap justify-center gap-7">
+          <div className="flex flex-wrap justify-center gap-5 md:gap-7">
             {currentBooks.map((book: BookVolume) => (
-              <BookCover key={book.id} book={book} />
+              <Card key={book.id} book={book} />
             ))}
           </div>
           <div className="my-4 flex">
@@ -140,7 +140,7 @@ export default function Home() {
         </div>
       )}
       <div
-        className={`fixed bottom-0 right-0 p-4 lg:p-5 z-30 transition-opacity duration-500 ${
+        className={`fixed bottom-0 right-0 p-4 md:p-5 z-30 transition-opacity duration-500 ${
           showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >

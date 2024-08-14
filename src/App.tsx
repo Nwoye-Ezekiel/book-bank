@@ -3,7 +3,7 @@ import { CircularProgress } from '@mui/material';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-const Home = lazy(() => import('components/app/home'));
+const Home = lazy(() => import('components/pages/home'));
 
 function App() {
   const queryClient = new QueryClient();
@@ -12,7 +12,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Suspense
         fallback={
-          <div className="flex flex-col items-center justify-center h-screen bg-black">
+          <div className="flex flex-col items-center justify-center h-screen bg-[#262626]">
             <CircularProgress />
           </div>
         }
