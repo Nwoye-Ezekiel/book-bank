@@ -1,13 +1,24 @@
-## About Project
+## Book Bank
 
-This react project consists of the following:
+Book Bank is a React-based web application that allows users to search for and explore books using [Google's Books API]. Users can view detailed book information and access previews on the [Google Books] platform.
 
-- Husky
-- Eslint
-- Prettier
-- TypeScript
-- Lint Staged
-- Tailwind CSS
+## Project Overview
+
+This project is built using the following tools and technologies:
+
+- **Husky:** Ensures code quality by running linting and formatting checks before commits.
+- **ESLint:** Identifies and fixes problems in JavaScript and TypeScript code.
+- **Prettier:** Formats code consistently according to a defined style.
+- **TypeScript:** Provides static typing to catch errors early and improve code quality.
+- **Lint Staged:** Runs linting and formatting tasks on staged files before committing.
+- **Tailwind CSS:** Utilizes utility-first CSS for building responsive and modern user interfaces.
+
+## Key Features
+
+- **Book Search:** Find books based on various criteria such as title, author, and ISBN using the powerful search functionality integrated with Google's Books API.
+- **Explore Book Details:** View comprehensive information about each book, including title, authors, publication date, cover image, and more.
+- **Preview Access:** Directly access the Google Books preview page for each book to read more and explore additional details.
+- **User-Friendly Interface:** Enjoy a clean and intuitive interface designed for easy navigation and book exploration.
 
 ## Project Setup
 
@@ -43,3 +54,5 @@ You can as well view the app which is hosted on **Vercel** by clicking on this l
 [Book Bank]
 
 [book bank]: https://book-bank.vercel.app/
+[google's books api]: https://developers.google.com/books
+[google books]: https://books.google.com
