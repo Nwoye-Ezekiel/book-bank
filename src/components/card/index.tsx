@@ -64,7 +64,7 @@ const Card = ({ book }: { book: BookVolume }) => {
             ''
           }
           alt="thumbnail"
-          className={`w-full bg-secondary text-black rounded-b-lg shadow-lg shadow-black/[.04] ${
+          className={`w-full bg-secondary text-black rounded-b-lg shadow-lg shadow-black/[.15] ${
             hovering ? 'duration-300 h-full' : 'duration-500 h-[12.5rem]'
           }`}
         />
