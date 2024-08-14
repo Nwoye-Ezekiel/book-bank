@@ -62,7 +62,7 @@ const Modal = ({ book, open, handleClose }: Props) => {
           </div>
         </div>
       </div>
-      <hr className="mt-6 md:mt-7 border-t border-t-solid border-t-white/[.1]" />
+      <hr className="mt-6 md:mt-7 border-t border-t-solid border-t-white/[.15]" />
       <div className="mt-4 md:mt-5">
         <h2 className="text-[22px] md:text-2xl font-semibold mb-0.5 text-primary">
           {book.volumeInfo.title}
