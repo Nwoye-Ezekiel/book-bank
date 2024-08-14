@@ -1,37 +1,37 @@
 @import 'tailwindcss/base';
-@import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import 'tailwindcss/components';
 
 @font-face {
+  font-display: swap;
   font-family: 'clash';
-  src: url('./fonts/ClashGrotesk.ttf') format('truetype');
-  font-display: swap;
+  src: url('./fonts/clash-grotesk.ttf') format('truetype');
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'cabinet';
-  src: url('./fonts/CabinetGrotesk.ttf') format('truetype');
-  font-display: swap;
+  src: url('./fonts/cabinet-grotesk.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'proxima';
-  src: url('./fonts/ProximaNova.otf') format('opentype');
   font-display: swap;
+  font-family: 'proxima';
+  src: url('./fonts/proxima-nova.otf') format('opentype');
 }
 
 :root {
-  --color-black: #000000;
-  --color-white: #ffffff;
-  --color-text: #494b4e;
+  --color-black: #000;
+  --color-primary: #f75d4a;
+  --color-primary-light: #f75e4a33;
 }
 
 * {
   margin: 0;
   padding: 0;
   font-weight: 300;
-  font-family: 'cabinet';
   box-sizing: border-box;
+  font-family: 'cabinet';
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -45,11 +45,20 @@ body {
   height: 100%;
   scroll-behavior: smooth;
   background-attachment: fixed;
-  /* background-color: #f2eadf;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23E4DBCC' stroke-width='10' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E"); */
-
-  background-color: #000000;
+  background-color: var(--color-black);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='30' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23222' stroke-width='10' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+body::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  content: '';
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 h1,
@@ -58,17 +67,31 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'clash';
   font-weight: 500;
+  font-family: 'clash';
 }
-
-/* p,
-span {
-  color: var(--color-text);
-} */
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+.loader {
+  height: 4px;
+  width: 130px;
+  border-radius: 5px;
+  background-size: 0% 100%;
+  animation: progress 4s forwards;
+  background: no-repeat linear-gradient(var(--color-primary) 0 0),
+    no-repeat linear-gradient(var(--color-primary) 0 0), var(--color-primary-light);
+}
+
+@keyframes progress {
+  0% {
+    background-size: 0% 100%;
+  }
+  100% {
+    background-size: 100% 100%;
+  }
 }

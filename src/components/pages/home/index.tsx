@@ -10,6 +10,7 @@ import { Button, CircularProgress, IconButton, OutlinedInput } from '@mui/materi
 
 export default function Home() {
   const maxResults = 10;
+
   const [search, setSearch] = useState('');
   const [startIndex, setStartIndex] = useState(0);
   const [showButton, setShowButton] = useState(false);
@@ -66,7 +67,6 @@ export default function Home() {
 
   return (
     <div className="w-full relative p-5 pt-[7.3rem] md:p-10 md:pt-32">
-      <div className="fixed top-0 left-0 h-screen w-full z-[-1] bg-black/[.4]" />
       <div className="border-b border-b-white/[.25] border-b-solid p-5 md:px-10 w-full grid grid-cols-12 justify-center items-center fixed top-0 left-0 bg-header z-50">
         <Logo className="h-auto w-8 md:w-9" />
         <div className="flex justify-end md:justify-center col-span-11 md:col-span-10">
