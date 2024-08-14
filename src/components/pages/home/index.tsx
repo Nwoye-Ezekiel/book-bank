@@ -2,6 +2,7 @@ import { BookVolume } from 'types';
 import debounce from 'lodash.debounce';
 import { useInfiniteBooks } from 'data';
 import Card from 'components/card';
+import { ReactComponent as Logo } from 'assets/images/logo.svg';
 import { Close, KeyboardDoubleArrowDown, Search } from '@mui/icons-material';
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect, useMemo, useCallback } from 'react';
@@ -66,35 +67,38 @@ export default function Home() {
   return (
     <div className="w-full relative p-5 pt-[7.3rem] md:p-10 md:pt-32">
       <div className="fixed top-0 left-0 h-screen w-full z-[-1] bg-black/[.4]" />
-      <div className="border-b border-b-white/[.25] border-b-solid p-5 w-full flex justify-center items-center fixed top-0 left-0 bg-header z-50">
-        <OutlinedInput
-          className="w-full max-w-[40rem] bg-secondary text-white"
-          placeholder="Search Books"
-          value={search}
-          onChange={handleSearchChange}
-          startAdornment={<Search className="mx-2 text-white/[.4] p-[1px]" />}
-          endAdornment={
-            search && (
-              <IconButton
-                className="mr-0.5 hover:bg-white/[.05]"
-                onClick={() => {
-                  setSearch('');
-                  debouncedSearchHandler('');
-                }}
-                edge="end"
-              >
-                <Close className="text-[18px] text-white/[.4]" />
-              </IconButton>
-            )
-          }
-          inputProps={{
-            sx: {
-              '::placeholder': {
-                color: 'rgba(255, 255, 255, 0.9)',
+      <div className="border-b border-b-white/[.25] border-b-solid p-5 md:px-10 w-full grid grid-cols-12 justify-center items-center fixed top-0 left-0 bg-header z-50">
+        <Logo className="h-auto w-8 md:w-9" />
+        <div className="flex justify-end md:justify-center col-span-11 md:col-span-10">
+          <OutlinedInput
+            className="w-[calc(100%-20px)] md:w-full max-w-[40rem] bg-secondary text-white"
+            placeholder="Search Books"
+            value={search}
+            onChange={handleSearchChange}
+            startAdornment={<Search className="mx-2 text-white/[.4] p-[1px]" />}
+            endAdornment={
+              search && (
+                <IconButton
+                  className="mr-0.5 hover:bg-white/[.05]"
+                  onClick={() => {
+                    setSearch('');
+                    debouncedSearchHandler('');
+                  }}
+                  edge="end"
+                >
+                  <Close className="text-[18px] text-white/[.4]" />
+                </IconButton>
+              )
+            }
+            inputProps={{
+              sx: {
+                '::placeholder': {
+                  color: 'rgba(255, 255, 255, 0.9)',
+                },
               },
-            },
-          }}
-        />
+            }}
+          />
+        </div>
       </div>
       {(isLoading && currentBooks.length === 0) || (isFetching && !isFetchingNextPage) ? (
         <div className="flex items-center justify-center h-[calc(100vh-85px)] -mt-[85px] w-full py-12">

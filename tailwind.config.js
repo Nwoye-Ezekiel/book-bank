@@ -7,7 +7,7 @@ module.exports = {
       white: '#fff',
       black: '#000',
       header: '#0e0e0e',
-      primary: '#ff503d',
+      primary: '#f75d4a',
       secondary: '#202020',
       transparent: 'trasparent',
     },
