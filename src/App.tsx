@@ -16,6 +16,7 @@ function App() {
     async function preloadFonts() {
       try {
         await Promise.all([
+          new FontFaceObserver('backline').load(),
           new FontFaceObserver('proxima-nova').load(),
           new FontFaceObserver('clash-grotesk').load(),
           new FontFaceObserver('cabinet-grotesk').load(),

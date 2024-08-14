@@ -16,6 +16,7 @@ module.exports = {
         clash: ['clash', 'ui-sans-serif', 'system-ui'],
         cabinet: ['cabinet', 'ui-sans-serif', 'system-ui'],
         proxima: ['proxima', 'ui-sans-serif', 'system-ui'],
+        backline: ['backline', 'ui-sans-serif', 'system-ui'],
       },
     },
   },

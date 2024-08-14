@@ -20,6 +20,12 @@
   src: url('./fonts/proxima-nova.otf') format('opentype');
 }
 
+@font-face {
+  font-display: swap;
+  font-family: 'backline';
+  src: url('./fonts/backline.otf') format('opentype');
+}
+
 :root {
   --color-black: #000;
   --color-primary: #f75d4a;
@@ -61,7 +67,10 @@ body::before {
   background: rgba(0, 0, 0, 0.6);
 }
 
-h1,
+h1 {
+  font-family: 'backline';
+}
+
 h2,
 h3,
 h4,
