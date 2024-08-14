@@ -15,7 +15,7 @@ const Card = ({ book }: { book: BookVolume }) => {
       onMouseLeave={() => setHovering(false)}
       className="w-full max-w-md md:max-w-60 flex flex-wrap flex-col shadow-lg rounded-xl overflow-hidden bg-secondary text-white"
     >
-      <div className="relative h-[22.5rem]">
+      <div className="relative h-[20.4rem]">
         <div
           className={`flex flex-col w-full p-3 pb-4 space-y-2 absolute bottom-0 left-0 ${
             hovering ? 'duration-200 translate-y-full' : 'duration-500 translate-y-0'
@@ -65,7 +65,7 @@ const Card = ({ book }: { book: BookVolume }) => {
           }
           alt="thumbnail"
           className={`w-full bg-secondary text-black rounded-b-lg shadow-lg shadow-black/[.04] ${
-            hovering ? 'duration-300 h-full' : 'duration-500 h-[15rem]'
+            hovering ? 'duration-300 h-full' : 'duration-500 h-[12.5rem]'
           }`}
         />
         <div
