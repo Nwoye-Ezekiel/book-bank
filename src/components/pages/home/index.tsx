@@ -4,16 +4,18 @@ import { useInfiniteBooks } from 'data';
 import BookCard from 'components/book-card';
 import { useInView } from 'react-intersection-observer';
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Close, KeyboardDoubleArrowDown, Search } from '@mui/icons-material';
 import { Button, CircularProgress, IconButton, OutlinedInput } from '@mui/material';
 
 export default function Home() {
-  const maxResults = 10;
   const [search, setSearch] = useState('');
   const [startIndex, setStartIndex] = useState(0);
   const [showButton, setShowButton] = useState(false);
   const [debouncedSearch, setDebouncedSearch] = useState('');
+
+  const maxResults = 10;
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const {
     data,
@@ -83,6 +85,7 @@ export default function Home() {
         <div className="flex justify-end md:justify-center col-span-11 md:col-span-10">
           <OutlinedInput
             value={search}
+            inputRef={inputRef}
             placeholder="Search for books"
             onChange={handleSearchChange}
             startAdornment={<Search className="mr-2 ml-0.5 text-white/[.4] p-[1px]" />}
@@ -94,6 +97,7 @@ export default function Home() {
                   onClick={() => {
                     setSearch('');
                     debouncedSearchHandler('');
+                    inputRef?.current?.focus();
                   }}
                   edge="end"
                 >
