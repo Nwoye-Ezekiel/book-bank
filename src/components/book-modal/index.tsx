@@ -22,7 +22,7 @@ const BookModal = ({ book, open, handleClose }: Props) => {
         backdrop: {
           sx: {
             backdropFilter: 'blur(3px)',
-            bgcolor: 'rgba(0, 0, 0, 0.85)',
+            bgcolor: 'rgba(0, 0, 0, 0.7)',
           },
         },
       }}
