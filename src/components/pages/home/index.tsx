@@ -124,7 +124,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-6 md:space-y-8">
               <div className="space-y-1 md:space-y-2">
                 <h2 className="text-2xl md:text-3xl text-center text-white">An Error Occurred!</h2>
-                <p className="text-[19px] md:text-xl text-center text-white/[.8]">
+                <p className="text-[19px] md:text-xl text-center text-white/[.5]">
                   We encountered an error while fetching books.
                 </p>
               </div>

@@ -28,11 +28,11 @@
 
 :root {
   --color-black: #000;
-  --color-gray: #585858bb;
   --color-primary: #f75d4a;
   --color-background: #1a1919;
+  --color-gray-fade: #3e3e3ebb;
   --color-transparent: #00000000;
-  --color-scrollbar-thumb: #525252bb;
+  --color-scrollbar-thumb: #585858bb;
 }
 
 * {
@@ -79,7 +79,7 @@ h6 {
   background-size: 0% 100%;
   animation: progress 4s forwards;
   background: no-repeat linear-gradient(var(--color-primary) 0 0),
-    no-repeat linear-gradient(var(--color-primary) 0 0), var(--color-gray);
+    no-repeat linear-gradient(var(--color-primary) 0 0), var(--color-gray-fade);
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -90,7 +90,7 @@ h6 {
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 5px;
-  background-color: var(--color-gray);
+  background-color: var(--color-gray-fade);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
