@@ -42,6 +42,11 @@ export default function Home() {
     debouncedSearchHandler(value);
   };
 
+  // Smoothly scroll the window to the top of the page.
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // Debounced search handler to trigger search fetches after 500ms of inactivity to optimize performance.
   const debouncedSearchHandler = useCallback(
     debounce((value: string) => {
@@ -74,7 +79,7 @@ export default function Home() {
     <div className="w-full relative p-5 pt-[7.3rem] md:p-10 md:pt-32">
       {/* Fixed header with logo and search bar */}
       <div className="border-b border-b-white/[.25] border-b-solid p-5 md:px-10 w-full grid grid-cols-12 justify-center items-center fixed top-0 left-0 bg-background z-[100]">
-        <Logo className="h-auto w-8 md:w-9" />
+        <Logo onClick={scrollToTop} className="h-auto w-8 md:w-9 cursor-pointer" />
         <div className="flex justify-end md:justify-center col-span-11 md:col-span-10">
           <OutlinedInput
             value={search}
@@ -160,10 +165,8 @@ export default function Home() {
         }`}
       >
         <div
+          onClick={scrollToTop}
           className="bg-primary hover:bg-primaryDark p-2 rounded-full shadow-md hover:shadow-lg duration-150 cursor-pointer"
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
         >
           <KeyboardDoubleArrowDown className="text-white text-2xl rotate-180" />
         </div>

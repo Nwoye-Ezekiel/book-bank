@@ -14,7 +14,7 @@ const BookCard = ({ book }: { book: BookVolume }) => {
     <div
       onMouseOver={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
-      className="w-full max-w-sm md:max-w-60 flex flex-wrap flex-col shadow-lg rounded-xl overflow-hidden bg-secondary text-white"
+      className="w-full max-w-sm md:max-w-60 flex flex-wrap flex-col shadow-lg shadow-black/[.3] rounded-xl overflow-hidden bg-secondary text-white"
     >
       <div className="relative h-[20.4rem]">
         {/* Book title, authors, page count, and published date */}
