@@ -42,16 +42,16 @@ const BookCard = ({ book }: { book: BookVolume }) => {
           </div>
           <div className="space-y-0.5">
             <div className="space-x-2 flex items-center text-sm">
-              <div className="space-x-2 flex items-center text-white/[.8]">
+              <div className="space-x-2 flex items-center text-white/[.6]">
                 <AutoStories className="text-[15px]" />
-                <h3 className="font-normal">Pages: </h3>
+                <p className="font-medium">Pages: </p>
               </div>
               <span className="text-white/[.6]">{book.volumeInfo.pageCount}</span>
             </div>
             <div className="space-x-2 flex items-center text-sm">
-              <div className="space-x-2 flex items-center text-white/[.8]">
+              <div className="space-x-2 flex items-center text-white/[.6]">
                 <CalendarMonth className="text-[15px]" />
-                <h3 className="font-normal">Published: </h3>
+                <p className="font-medium">Published: </p>
               </div>
               <span className="text-white/[.6]">
                 {book.volumeInfo.publishedDate?.slice(0, 4) ?? 'N/A'}
