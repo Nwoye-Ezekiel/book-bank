@@ -101,11 +101,9 @@ export default function Home() {
                 </IconButton>
               )
             }
-            inputProps={{
-              sx: {
-                '::placeholder': {
-                  color: 'rgba(255, 255, 255, 0.9)',
-                },
+            sx={{
+              '&:hover .MuiOutlinedInput-notchedOutline': {
+                borderColor: 'var(--color-primary)',
               },
             }}
           />
