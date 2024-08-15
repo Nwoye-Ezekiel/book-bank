@@ -5,16 +5,16 @@ export interface QueryParams {
 }
 
 export interface BookVolume {
-  kind: string;
   id: string;
+  kind: string;
   etag: string;
   selfLink: string;
   volumeInfo: {
     title: string;
+    subtitle: string;
     authors?: string[];
     publisher?: string;
     description?: string;
-    subtitle: string;
     publishedDate: string;
     industryIdentifiers: Array<{
       type: string;
@@ -28,26 +28,26 @@ export interface BookVolume {
     printType: string;
     categories: string[];
     maturityRating: string;
-    allowAnonLogging: boolean;
     contentVersion: string;
+    allowAnonLogging: boolean;
     panelizationSummary: {
       containsEpubBubbles: boolean;
       containsImageBubbles: boolean;
     };
     imageLinks: {
-      smallThumbnail: string;
       thumbnail: string;
+      smallThumbnail: string;
     };
     language: string;
-    previewLink: string;
     infoLink: string;
+    previewLink: string;
     canonicalVolumeLink: string;
   };
   saleInfo: {
     country: string;
-    saleability: string;
-    isEbook: boolean;
     buyLink: string;
+    isEbook: boolean;
+    saleability: string;
   };
   accessInfo: {
     country: string;
@@ -73,6 +73,6 @@ export interface BookVolume {
 
 export interface BooksResponse {
   kind: string;
-  items: BookVolume[];
   totalItems: number;
+  items: BookVolume[];
 }

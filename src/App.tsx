@@ -5,14 +5,16 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+// Lazy-load components to split code and improve performance.
 const Home = lazy(() => import('components/pages/home'));
 const PageNotFound = lazy(() => import('components/pages/page-not-found'));
 
-function App() {
+const App = () => {
   const queryClient = new QueryClient();
   const [showSplash, setShowSplash] = useState(true);
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
+  // Preload all local fonts.
   useEffect(() => {
     async function preloadFonts() {
       try {
@@ -26,20 +28,25 @@ function App() {
         // eslint-disable-next-line no-console
         console.error('Error preloading fonts:', error);
       } finally {
+        // Update state to indicate fonts are loaded, whether successful or not.
         setFontsLoaded(true);
       }
     }
+
     preloadFonts();
   }, []);
 
+  // Hide splash screen after 3 seconds.
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShowSplash(false);
     }, 3000);
 
+    // Cleanup function to clear the timeout if the component unmounts.
     return () => clearTimeout(timeoutId);
   }, []);
 
+  // Show the splash screen if it's still active or fonts haven't loaded within the default 3 seconds timeout.
   if (showSplash || !fontsLoaded) {
     return <SplashScreen />;
   }
@@ -47,6 +54,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense
+        // Display a loading spinner while components are being loaded.
         fallback={
           <div className="flex flex-col items-center justify-center h-screen">
             <CircularProgress />
@@ -55,15 +63,15 @@ function App() {
       >
         <BrowserRouter>
           <Routes>
-            <Route>
-              <Route path="/" element={<Home />} />
-            </Route>
+            {/* Route for Home page */}
+            <Route path="/" element={<Home />} />
+            {/* Route for handling 404 - Page Not Found */}
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
       </Suspense>
     </QueryClientProvider>
   );
-}
+};
 
 export default App;

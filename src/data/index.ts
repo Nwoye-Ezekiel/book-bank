@@ -14,9 +14,12 @@ export function useInfiniteBooks(params: QueryParams) {
     },
     {
       getNextPageParam: (lastPage) => {
+        // If the last page has fewer items than maxResults, it indicates the end of available data.
         if (lastPage.items && lastPage.items.length < params.maxResults) {
           return undefined;
         }
+
+        // Otherwise, calculate the next page parameter
         return lastPage.nextPageParam;
       },
       refetchOnWindowFocus: false,
