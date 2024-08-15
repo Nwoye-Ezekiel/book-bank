@@ -155,12 +155,12 @@ export default function Home() {
 
       {/* Scroll to top button */}
       <div
-        className={`fixed bottom-0 right-0 p-4 md:p-5 z-30 transition-opacity duration-500 ${
+        className={`fixed bottom-0 right-0 p-4 md:p-5 z-30 transition-opacity duration-500  ${
           showButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         <div
-          className="bg-primary p-2 rounded-full shadow-md hover:shadow-lg duration-150 cursor-pointer"
+          className="bg-primary hover:bg-primaryDark p-2 rounded-full shadow-md hover:shadow-lg duration-150 cursor-pointer"
           onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
