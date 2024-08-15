@@ -1,11 +1,12 @@
-import Splash from 'components/splash';
 import FontFaceObserver from 'fontfaceobserver';
 import { CircularProgress } from '@mui/material';
+import SplashScreen from 'components/splash-screen';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Home = lazy(() => import('components/pages/home'));
+const PageNotFound = lazy(() => import('components/pages/page-not-found'));
 
 function App() {
   const queryClient = new QueryClient();
@@ -40,7 +41,7 @@ function App() {
   }, []);
 
   if (showSplash || !fontsLoaded) {
-    return <Splash />;
+    return <SplashScreen />;
   }
 
   return (
@@ -57,6 +58,7 @@ function App() {
             <Route>
               <Route path="/" element={<Home />} />
             </Route>
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
       </Suspense>

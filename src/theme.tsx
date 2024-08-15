@@ -24,16 +24,14 @@ const theme = createTheme({
           textTransform: 'none',
         },
         containedPrimary: {
-          ...tw`bg-primary font-proxima`,
+          ...tw`bg-primary font-proxima p-6 text-[17px]`,
           color: tailwindTheme`colors.white` + '!important',
         },
         sizeLarge: {
-          height: '56px',
-          ...tw`px-8 py-7 text-[17px]`,
+          height: '50px',
         },
         sizeMedium: {
           height: '40px',
-          ...tw`px-6 py-6 text-[16px]`,
         },
       },
     },

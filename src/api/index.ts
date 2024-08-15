@@ -2,6 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 const baseURL = process.env.REACT_APP_API_BASEURL;
 
+// This class extends the built-in Error class to handle both server and client errors.
+// It allows you to throw a custom error message with an optional status code.
 class ExtendedError extends Error {
   status: number | null;
 
@@ -11,7 +13,7 @@ class ExtendedError extends Error {
   }
 }
 
-async function makeApiCall<T = any>(
+export default async function makeApiCall<T = any>(
   url: string,
   method: AxiosRequestConfig['method'] = 'get',
   payload?: AxiosRequestConfig['data'],
@@ -43,12 +45,10 @@ async function makeApiCall<T = any>(
       });
     }
 
-    // throw browser error if server error is not available
+    // throw client error if server error is not available
     throw new ExtendedError({
       message: error.message,
       status: null,
     });
   }
 }
-
-export default makeApiCall;

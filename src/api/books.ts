@@ -1,5 +1,5 @@
 import makeApiCall from 'api';
-import { BooksResponse, QueryParams } from 'types';
+import { QueryParams, BooksResponse } from 'types';
 
 const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
 

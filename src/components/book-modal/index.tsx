@@ -1,4 +1,5 @@
 import { BookVolume } from 'types';
+import NoImage from 'assets/images/no-image.png';
 import { Button, Chip, Dialog, IconButton } from '@mui/material';
 import { AutoStories, CalendarMonth, Close, Language } from '@mui/icons-material';
 
@@ -8,7 +9,7 @@ interface Props {
   handleClose: () => void;
 }
 
-const Modal = ({ book, open, handleClose }: Props) => {
+const BookModal = ({ book, open, handleClose }: Props) => {
   return (
     <Dialog
       open={open}
@@ -26,22 +27,25 @@ const Modal = ({ book, open, handleClose }: Props) => {
         },
       }}
     >
+      {/* BookModal header with close button */}
       <div className="flex justify-between items-center">
         <h2 className="text-xl md:text-[22px] text-white font-semibold">Book Details</h2>
         <IconButton
-          className="bg-black/[.12] w-8 h-8 justify-self-end"
           size="small"
           onClick={handleClose}
+          className="bg-black/[.12] w-8 h-8 justify-self-end"
         >
           <Close className="p-1 text-white" />
         </IconButton>
       </div>
+
+      {/* Book image and metadata: published date, page count, and language */}
       <div className="flex flex-col md:flex-row w-full gap-5 mt-4 md:mt-5">
         <img
           src={
             book.volumeInfo.imageLinks?.thumbnail ??
             book.volumeInfo.imageLinks?.smallThumbnail ??
-            ''
+            NoImage
           }
           alt="thumbnail"
           className={`w-full md:w-[calc(100%-140px)] h-80 bg-black/[.12] text-black rounded-lg shadow-lg shadow-black/[.04]`}
@@ -70,7 +74,10 @@ const Modal = ({ book, open, handleClose }: Props) => {
           </div>
         </div>
       </div>
+
       <hr className="mt-6 md:mt-7 border-t border-t-solid border-t-white/[.15]" />
+
+      {/* Book title, authors, and publisher */}
       <div className="mt-4 md:mt-5">
         <h2 className="text-[22px] md:text-2xl font-semibold mb-0.5 text-primary">
           {book.volumeInfo.title}
@@ -95,6 +102,8 @@ const Modal = ({ book, open, handleClose }: Props) => {
           <span>{book.volumeInfo.publisher ?? 'N/A'}</span>
         </p>
       </div>
+
+      {/* Book categories */}
       <div className="flex flex-wrap items-center gap-2 mt-3">
         {book.volumeInfo.categories?.map((category, index) => (
           <Chip
@@ -106,12 +115,15 @@ const Modal = ({ book, open, handleClose }: Props) => {
           />
         ))}
       </div>
+
+      {/* Book description */}
       <div className="mt-5 space-y-1">
         <h2 className="text-xl md:text-[22px] font-semibold text-white">Description</h2>
         <p className="text-[17px]">{book.volumeInfo.description ?? 'No Description.'}</p>
       </div>
+
+      {/* Button to preview book */}
       <Button
-        size="large"
         className="mt-5 md:mt-6"
         onClick={() =>
           window.open(book.volumeInfo.previewLink ?? book.accessInfo.epub.downloadLink)
@@ -123,4 +135,4 @@ const Modal = ({ book, open, handleClose }: Props) => {
   );
 };
 
-export default Modal;
+export default BookModal;

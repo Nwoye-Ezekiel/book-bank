@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import { BookVolume } from 'types';
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import BookModal from 'components/book-modal';
+import NoImage from 'assets/images/no-image.png';
 import { AutoStories, CalendarMonth } from '@mui/icons-material';
-import Modal from 'components/modal';
 
-const Card = ({ book }: { book: BookVolume }) => {
+const BookCard = ({ book }: { book: BookVolume }) => {
   const [hovering, setHovering] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedBook, setSelectedBook] = useState<null | BookVolume>(null);
@@ -16,6 +17,7 @@ const Card = ({ book }: { book: BookVolume }) => {
       className="w-full max-w-md md:max-w-60 flex flex-wrap flex-col shadow-lg rounded-xl overflow-hidden bg-secondary text-white"
     >
       <div className="relative h-[20.4rem]">
+        {/* Book title, authors, page count, and published date */}
         <div
           className={`flex flex-col w-full p-3 pb-4 space-y-2 absolute bottom-0 left-0 ${
             hovering ? 'duration-200 translate-y-full' : 'duration-500 translate-y-0'
@@ -57,17 +59,21 @@ const Card = ({ book }: { book: BookVolume }) => {
             </div>
           </div>
         </div>
+
+        {/* Book thumbnail */}
         <img
+          alt="thumbnail"
           src={
             book.volumeInfo.imageLinks?.thumbnail ??
             book.volumeInfo.imageLinks?.smallThumbnail ??
-            ''
+            NoImage
           }
-          alt="thumbnail"
           className={`w-full bg-secondary text-black rounded-b-lg shadow-lg shadow-black/[.15] ${
             hovering ? 'duration-300 h-full' : 'duration-500 h-[12.5rem]'
           }`}
         />
+
+        {/* Overlay with "View Details" button */}
         <div
           className={`absolute top-0 left-0 h-full w-full bg-black/[.75] z-20 flex flex-col justify-center items-center transform space-y-5 cursor-default ${
             hovering ? 'duration-200 opacity-100' : 'duration-500 opacity-0'
@@ -82,7 +88,6 @@ const Card = ({ book }: { book: BookVolume }) => {
           </h2>
           <Button
             size="medium"
-            className="text-black"
             onClick={() => {
               setSelectedBook(book);
               setShowModal(true);
@@ -92,13 +97,15 @@ const Card = ({ book }: { book: BookVolume }) => {
           </Button>
         </div>
       </div>
+
+      {/* BookModal to show book details */}
       {selectedBook && (
-        <Modal
-          book={selectedBook}
+        <BookModal
           open={showModal}
+          book={selectedBook}
           handleClose={() => {
-            setShowModal(false);
             setHovering(false);
+            setShowModal(false);
           }}
         />
       )}
@@ -106,4 +113,4 @@ const Card = ({ book }: { book: BookVolume }) => {
   );
 };
 
-export default Card;
+export default BookCard;
