@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div className="w-full relative p-5 pt-[7.3rem] md:p-10 md:pt-32">
       {/* Fixed header with logo and search bar */}
-      <div className="border-b border-b-white/[.25] border-b-solid p-5 md:px-10 w-full grid grid-cols-12 justify-center items-center fixed top-0 left-0 bg-header z-[100]">
+      <div className="border-b border-b-white/[.25] border-b-solid p-5 md:px-10 w-full grid grid-cols-12 justify-center items-center fixed top-0 left-0 bg-background z-[100]">
         <Logo className="h-auto w-8 md:w-9" />
         <div className="flex justify-end md:justify-center col-span-11 md:col-span-10">
           <OutlinedInput
