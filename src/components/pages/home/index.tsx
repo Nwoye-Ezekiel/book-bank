@@ -78,21 +78,21 @@ export default function Home() {
         <div className="flex justify-end md:justify-center col-span-11 md:col-span-10">
           <OutlinedInput
             value={search}
-            placeholder="Search Books"
+            placeholder="Search for books"
             onChange={handleSearchChange}
-            startAdornment={<Search className="mx-2 text-white/[.4] p-[1px]" />}
+            startAdornment={<Search className="mr-2 ml-0.5 text-white/[.4] p-[1px]" />}
             className="w-[calc(100%-20px)] md:w-full max-w-[40rem] bg-secondary text-white"
             endAdornment={
               search && (
                 <IconButton
-                  className="mr-0.5 hover:bg-white/[.05]"
+                  className="p-1.5 mr-0.5 hover:bg-white/[.05]"
                   onClick={() => {
                     setSearch('');
                     debouncedSearchHandler('');
                   }}
                   edge="end"
                 >
-                  <Close className="text-[18px] text-white/[.4]" />
+                  <Close className="text-[17px] text-white/[.4]" />
                 </IconButton>
               )
             }
@@ -139,9 +139,7 @@ export default function Home() {
             <div ref={ref} />
             {isFetchingNextPage && (
               <div className="flex items-center justify-center w-full">
-                <Button disabled className="w-40 bg-primary/[.1]">
-                  <CircularProgress size={22} />
-                </Button>
+                <CircularProgress size={22} />
               </div>
             )}
           </div>

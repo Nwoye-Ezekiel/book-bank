@@ -33,7 +33,7 @@ const BookModal = ({ book, open, handleClose }: Props) => {
         <IconButton
           size="small"
           onClick={handleClose}
-          className="bg-black/[.12] w-8 h-8 justify-self-end"
+          className="bg-white/[.05] hover:bg-white/[.1] w-8 h-8 justify-self-end"
         >
           <Close className="p-1 text-white" />
         </IconButton>
@@ -48,24 +48,24 @@ const BookModal = ({ book, open, handleClose }: Props) => {
             NoImage
           }
           alt="thumbnail"
-          className={`w-full md:w-[calc(100%-140px)] h-80 bg-black/[.12] text-black rounded-lg shadow-lg shadow-black/[.04]`}
+          className={`w-full md:w-[calc(100%-140px)] h-80 bg-white/[.05] text-black rounded-lg shadow-lg shadow-black/[.04]`}
         />
         <div className="flex flex-shrink-0 flex-row md:flex-col justify-between items-center gap-5 md:w-[120px]">
-          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-black/[.12] rounded-lg py-2 md:py-2.5 px-3">
+          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-white/[.05] rounded-lg py-2 md:py-2.5 px-3">
             <CalendarMonth className="text-primary text-[17px] mt-1" />
             <div className="flex flex-col items-center">
               <h3 className="text-white">{book.volumeInfo.publishedDate?.slice(0, 4) ?? 'N/A'}</h3>
               <p className="text-sm text-white/[.55]">Published</p>
             </div>
           </div>
-          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-black/[.12] rounded-lg py-2 md:py-2.5 px-3">
+          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-white/[.05] rounded-lg py-2 md:py-2.5 px-3">
             <AutoStories className="text-primary text-[17px] mt-1" />
             <div className="flex flex-col items-center">
               <h3 className="text-white">{book.volumeInfo.pageCount}</h3>
               <p className="text-sm text-white/[.55]">Pages</p>
             </div>
           </div>
-          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-black/[.12] rounded-lg py-2 md:py-2.5 px-3">
+          <div className="gap-2 flex flex-col items-center text-white/[.7] w-1/3 md:w-full bg-white/[.05] rounded-lg py-2 md:py-2.5 px-3">
             <Language className="text-primary text-[17px] mt-1" />
             <div className="flex flex-col items-center">
               <h3 className="text-white uppercase">{book.volumeInfo.language}</h3>
