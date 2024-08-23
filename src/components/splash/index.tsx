@@ -1,6 +1,6 @@
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
 
-export default function SplashScreen() {
+export default function Splash() {
   return (
     <div className="h-svh w-full flex justify-center items-center">
       <div className="flex flex-col items-center space-y-10 md:space-y-12">

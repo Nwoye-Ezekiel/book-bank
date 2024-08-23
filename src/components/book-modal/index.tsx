@@ -3,13 +3,15 @@ import NoImage from 'assets/images/no-image.png';
 import { Button, Chip, Dialog, IconButton } from '@mui/material';
 import { AutoStories, CalendarMonth, Close, Language } from '@mui/icons-material';
 
-interface Props {
+const BookModal = ({
+  book,
+  open,
+  handleClose,
+}: {
   open: boolean;
   book: BookVolume;
   handleClose: () => void;
-}
-
-const BookModal = ({ book, open, handleClose }: Props) => {
+}) => {
   return (
     <Dialog
       open={open}

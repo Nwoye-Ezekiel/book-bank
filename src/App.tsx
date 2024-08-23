@@ -1,13 +1,13 @@
+import Splash from 'components/splash';
 import FontFaceObserver from 'fontfaceobserver';
 import { CircularProgress } from '@mui/material';
-import SplashScreen from 'components/splash-screen';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // Lazy-load components to split code and improve performance.
-const Home = lazy(() => import('components/pages/home'));
-const PageNotFound = lazy(() => import('components/pages/page-not-found'));
+const Home = lazy(() => import('pages/home'));
+const PageNotFound = lazy(() => import('pages/page-not-found'));
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -48,13 +48,12 @@ const App = () => {
 
   // Show the splash screen if it's still active or fonts haven't loaded within the default 3 seconds timeout.
   if (showSplash || !fontsLoaded) {
-    return <SplashScreen />;
+    return <Splash />;
   }
 
   return (
     <QueryClientProvider client={queryClient}>
       <Suspense
-        // Display a loading spinner while components are being loaded.
         fallback={
           <div className="flex flex-col items-center justify-center h-screen">
             <CircularProgress />
@@ -63,9 +62,7 @@ const App = () => {
       >
         <BrowserRouter>
           <Routes>
-            {/* Route for Home page */}
             <Route path="/" element={<Home />} />
-            {/* Route for handling 404 - Page Not Found */}
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>

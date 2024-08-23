@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BookVolume } from 'types';
 import { Button } from '@mui/material';
 import BookModal from 'components/book-modal';
+import withBookCards from 'hoc/withBookCards';
 import NoImage from 'assets/images/no-image.png';
 import { AutoStories, CalendarMonth } from '@mui/icons-material';
 
@@ -113,4 +114,4 @@ const BookCard = ({ book }: { book: BookVolume }) => {
   );
 };
 
-export default BookCard;
+export default withBookCards(BookCard);
